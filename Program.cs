@@ -1,4 +1,5 @@
 using AspWebApiIdentityAuthorization.Data;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -62,6 +63,21 @@ app.MapGet(
         }
     )
     .WithName("GetWeatherForecast")
+    .WithOpenApi()
+    .RequireAuthorization();
+
+app.MapPost(
+        "/logout",
+        async (SignInManager<IdentityUser> signInManager, [FromBody] object empty) =>
+        {
+            if (empty != null)
+            {
+                await signInManager.SignOutAsync();
+                return Results.Ok();
+            }
+            return Results.Unauthorized();
+        }
+    )
     .WithOpenApi()
     .RequireAuthorization();
 
