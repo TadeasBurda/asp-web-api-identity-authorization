@@ -13,6 +13,9 @@ var app = builder.Build();
 builder.Services.AddDbContext<ApplicationDbContext>(
     options => options.UseInMemoryDatabase("AppDb"));
 
+// Add services to the container.
+builder.Services.AddAuthorization();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
