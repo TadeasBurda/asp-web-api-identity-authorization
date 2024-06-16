@@ -1,3 +1,5 @@
+using AspWebApiIdentityAuthorization.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +8,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+// Create a new service scope to ensure the database is created.
+builder.Services.AddDbContext<ApplicationDbContext>(
+    options => options.UseInMemoryDatabase("AppDb"));
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
