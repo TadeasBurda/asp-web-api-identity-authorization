@@ -1,0 +1,6 @@
+@AspWebApiIdentityAuthorization_HostAddress = http://localhost:5170
+
+GET {{AspWebApiIdentityAuthorization_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
